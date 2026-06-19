@@ -1,1 +1,116 @@
-´´
+import datetime
+import os
+
+# ==============================================================================
+# 1. GERAÇÃO AUTOMÁTICA DA DOCUMENTAÇÃO PARA O GITHUB (README.md)
+# ==============================================================================
+readme_conteudo = """# 🚜 Diário de um Agricultor: Agro Forte, Futuro Sustentável
+
+Bem-vindo ao repositório **Agro Forte, Futuro Sustentável**! Este projeto é um diário de bordo interativo em Python desenvolvido para o agricultor moderno. Ele une a tradição do campo com a tecnologia necessária para monitorar a sustentabilidade e a eficiência da produção.
+
+## 🌱 Funcionalidades
+* **Registrar Diário:** Escreva a rotina da fazenda e armazene as anotações.
+* **Análise de Solo:** Insira os níveis de Nitrogênio (N), Fósforo (P) e Potássio (K) para receber um diagnóstico ecológico.
+* **Calculadora de Carbono:** Estime o impacto ambiental com base no uso de combustível dos tratores.
+
+## 🚀 Como Executar
+1. Certifique-se de ter o Python 3 instalado.
+2. Execute o script principal:
+   ```bash
+   python diario_fazenda.py
+data_atual = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
+atividade = input("Digite a principal atividade sustentável de hoje: ")
+observacoes = input("Observações adicionais (clima, pragas, manejo): ")
+
+with open("diario_campo.txt", "a", encoding="utf-8") as arquivo:
+    arquivo.write(f"Data: {data_atual}\n")
+    arquivo.write(f"Atividade: {atividade}\n")
+    arquivo.write(f"Observações: {observacoes}\n")
+    arquivo.write("-" * 40 + "\n")
+
+print("\n✅ Registro salvo com sucesso no arquivo 'diario_campo.txt'!")
+input("\nPressione Enter para voltar ao menu...")
+try:
+    with open("diario_campo.txt", "r", encoding="utf-8") as arquivo:
+        conteudo = arquivo.read()
+        if conteudo.strip() == "":
+            print("O diário ainda está vazio.")
+        else:
+            print(conteudo)
+except FileNotFoundError:
+    print(
+        "Nenhum registro encontrado ainda. Comece a escrever para criar o diário!"
+    )
+
+input("\nPressione Enter para voltar ao menu...")
+try:
+    n = float(input("Nível de Nitrogênio (N): "))
+    p = float(input("Nível de Fósforo (P): "))
+    k = float(input("Nível de Potássio (K): "))
+
+    print("\n📊 DIAGNÓSTICO RECOMENDADO:")
+    if n < 20 or p < 10 or k < 40:
+        print(
+            "⚠️ Alerta: Solo com baixa fertilidade. Recomendado uso de adubação verde"
+        )
+        print(
+            "   (leguminosas) e compostagem orgânica para recuperar os nutrientes."
+        )
+    else:
+        print(
+            "🌿 Solo Equilibrado! Mantenha o plantio direto e a rotação de culturas"
+        )
+        print(
+            "   (sistema ILPF) para preservar a biodiversidade microbiológica."
+        )
+
+except ValueError:
+    print("\n❌ Por favor, insira apenas números válidos.")
+
+input("\nPressione Enter para voltar ao menu...")
+try:
+    litros_diesel = float(
+        input("Quantos litros de Diesel foram gastníssimos hoje? ")
+    )
+
+    co2_emitido = litros_diesel * 2.6
+    print(f"\n💨 Emissão estimada: {co2_emitido:.2f} kg de CO2.")
+
+    if co2_emitido > 150:
+        print(
+            "💡 Dica de Sustentabilidade: O consumo está alto. Planeje melhor as rotas"
+        )
+        print(
+            "   dos tratores ou avalie o uso de biocombustíveis (Biodiesel B20)."
+        )
+    else:
+        print(
+            "🌲 Pegada de carbono controlada! Continue com práticas de manejo eficiente."
+        )
+
+except ValueError:
+    print("\n❌ Por favor, insira apenas números válidos.")
+
+input("\nPressione Enter para voltar ao menu...")
+if opcao == "1":
+        escrever_diario()
+    elif opcao == "2":
+        ler_diario()
+    elif opcao == "3":
+        analisar_solo()
+    elif opcao == "4":
+        calcular_carbono()
+    elif opcao == "5":
+        limpar_tela()
+        print(
+            "\nObrigado por praticar a agricultura do futuro! Até logo. 👋🌱\n"
+        )
+        break
+    else:
+        print("\n❌ Opção inválida! Tente novamente.")
+        input("\nPressione Enter para continuar...")
+---
+
+### 🌾 O Impacto da Tecnologia Verde
+
+A tecnologia não serve apenas para automatizar tarefas, serve para gerar consciência. Quando unimos a análise de dados como os **nutrientes do solo** com o cálculo em tempo real das **emissões de carbono**, o produtor rural ganha inteligência estratégica para tomar decisões que protegem o meio ambiente e mantêm o negócio forte.
